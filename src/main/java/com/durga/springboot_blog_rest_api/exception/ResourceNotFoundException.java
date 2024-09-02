@@ -1,31 +1,21 @@
 package com.durga.springboot_blog_rest_api.exception;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
+@Getter
 public class ResourceNotFoundException extends RuntimeException {
     private String resourceName;
     private String fieldName;
-    private String fieldValue;
+    private Long fieldValue;
 
-    public ResourceNotFoundException(String resourceName, String fieldName, String fieldValue) {
-        super(String.format("Resource %s not found in %s : '%s", resourceName, fieldName, fieldValue));
+    public ResourceNotFoundException(String resourceName, String fieldName, Long fieldValue) {
         this.resourceName = resourceName;
         this.fieldName = fieldName;
         this.fieldValue = fieldValue;
-
     }
 
-    public String getResourceName() {
-        return resourceName;
-    }
 
-    public String getFieldName() {
-        return fieldName;
-    }
-
-    public String getFieldValue() {
-        return fieldValue;
-    }
 }
